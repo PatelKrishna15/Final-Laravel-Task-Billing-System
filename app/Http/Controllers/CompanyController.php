@@ -23,16 +23,16 @@ class CompanyController extends Controller
    
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-            'image' => 'required',
-            'address' => 'required',
-            'postalcode' => 'required',
-            'fax' => 'required',
-            'country_id' => 'required',
-            'user_id' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'phone' => 'required',
+        //     'image' => 'required',
+        //     'address' => 'required',
+        //     'postalcode' => 'required',
+        //     'fax' => 'required',
+        //     'country_id' => 'required',
+        //     'user_id' => 'required',
+        // ]);
           
         $img_t = Company::where('id',$request->id)->first(); 
 
