@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Country;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,8 +23,19 @@ class CompanyController extends Controller
    
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'image' => 'required',
+            'address' => 'required',
+            'postalcode' => 'required',
+            'fax' => 'required',
+            'country_id' => 'required',
+            'user_id' => 'required',
+        ]);
+          
         $img_t = Company::where('id',$request->id)->first(); 
-     
+
         if($request->image != null || $request->image != ''){
             $image =$request->file('image');
             $imagename = time().'.'.$image->extension();
@@ -31,6 +43,7 @@ class CompanyController extends Controller
         }elseif($request->image == null){
             $imagename = $img_t->image    ;
         }
+       
         Company::updateOrCreate([
             'id'=>$request->id,
         ],
