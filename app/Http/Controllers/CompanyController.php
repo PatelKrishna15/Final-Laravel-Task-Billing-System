@@ -56,7 +56,6 @@ class CompanyController extends Controller
             'name'=>$request->name,
             'phone'=>$request->phone,
             'image'=>$image=$imagename,
-            // 'image'=>$imagename,
             'address'=>$request->address,
             'postalcode'=>$request->postalcode,
             'fax'=>$request->fax,
