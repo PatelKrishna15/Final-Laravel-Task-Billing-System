@@ -14,9 +14,12 @@ class CompanyController extends Controller
     {
         $country =Country::get();
         view()->share('country',$country);
+        $i =1;
+        view()->share('i',$i);
     }
     public function index()
     {
+       
         $company = Company::get();
         return view('company.index',compact('company'));
     }
@@ -70,9 +73,10 @@ class CompanyController extends Controller
     }
     public function edit($id)
     {
+      
         $id = decrypt($id);
         $data = Company::where('id',$id)->first();
-        $company = Company::get();
-        return view('company.edit',compact('data','company'));
+        // $company = Company::get();
+        return view('company.edit',compact('data'));
     }
 }

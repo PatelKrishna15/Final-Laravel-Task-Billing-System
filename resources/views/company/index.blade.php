@@ -86,8 +86,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php($i = 1)
-                            @endphp
                             @foreach ($company as $item)
                                 <tr>
                                     <th scope="row">{{ $i++ }} </th>

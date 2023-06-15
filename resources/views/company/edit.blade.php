@@ -54,7 +54,7 @@
     </div>
    
  
-        <div class="container">
+        {{-- <div class="container">
         <div class="card mt-2 p-3">
  
           
@@ -69,21 +69,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            ($i=1)
-                        @endphp
+                      
                         @foreach ($company as $item)
                             <tr>
                                 <th scope="row">{{$i++}} </th>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->phone }}</td>
-                                {{-- <td><img src="{{ asset('images/' . $item->image) }}"></td> --}}
-                                <td>{{ $item->country->name }}</td>
+                                <td><img src="{{ asset('images/' . $item->image) }}"></td> --}}
+                                {{-- <td>{{ $item->country->name }}</td>
                                 <td>
                                     <a class="btn btn-success" href="{{ route('edit', encrypt($item->id)) }}"
-                                        data-id="{{ $item->id }}">Edit</a> 
+                                        data-id="{{ $item->id }}">Edit</a>  --}}
                                     {{-- <a class="btn btn-danger"data-url="{{ route('delete', $item->id) }}"data-id="{{ $item->id }}">Delete</a> --}}
-                                </td>
+                                {{-- </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -92,5 +90,5 @@
         </div>
     </div>
     </div>
- 
+  --}}
 @endsection
