@@ -26,16 +26,7 @@ class CompanyController extends Controller
    
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'phone' => 'required',
-        //     'image' => 'required',
-        //     'address' => 'required',
-        //     'postalcode' => 'required',
-        //     'fax' => 'required',
-        //     'country_id' => 'required',
-        //     'user_id' => 'required',
-        // ]);
+       
           
         $img_t = Company::where('id',$request->id)->first(); 
 
@@ -44,7 +35,18 @@ class CompanyController extends Controller
             $imagename = time().'.'.$image->extension();
             $request->image->move(public_path('images'),$imagename);
         }elseif($request->image == null){
-            $imagename = $img_t->image    ;
+            $request->validate([
+                'name' => 'required',
+                'phone' => 'required',
+                'image' => 'required',
+                'address' => 'required',
+                'postalcode' => 'required',
+                'fax' => 'required',
+                'country_id' => 'required',
+                'user_id' => 'required',
+            ]);
+           
+            $imagename = $img_t->image;
         }
        
         Company::updateOrCreate([
@@ -53,8 +55,8 @@ class CompanyController extends Controller
         [
             'name'=>$request->name,
             'phone'=>$request->phone,
-            // 'image'=>$image=$imagename,
-            'image'=>$imagename,
+            'image'=>$image=$imagename,
+            // 'image'=>$imagename,
             'address'=>$request->address,
             'postalcode'=>$request->postalcode,
             'fax'=>$request->fax,
@@ -76,7 +78,7 @@ class CompanyController extends Controller
       
         $id = decrypt($id);
         $data = Company::where('id',$id)->first();
-        // $company = Company::get();
-        return view('company.edit',compact('data'));
+        $company = Company::get();
+        return view('company.edit',compact('data','company'));
     }
 }
