@@ -28,13 +28,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('company/index',[CompanyController::class,'index'])->name('index');
+    Route::get('company/index',[CompanyController::class,'index'])->name('company.index');
     Route::post('company/store',[CompanyController::class,'store'])->name('store');
-    Route::get('/delete/{id}',[CompanyController::class,'delete'])->name('delete');
-    Route::get('/edit/{id}',[CompanyController::class,'edit'])->name('edit');
+    Route::get('delete/{id}',[CompanyController::class,'delete'])->name('company.delete');
+    Route::get('edit/{id}',[CompanyController::class,'edit'])->name('edit');
     Route::get('product/index',[ProductController::class,'index'])->name('product.index');
     Route::post('product/store',[ProductController::class,'store'])->name('product.store');
-    Route::get('edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+    Route::get('product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+    Route::get('/delete/{id}',[ProductController::class,'delete'])->name('product.delete');
 });
+
 
 require __DIR__.'/auth.php';

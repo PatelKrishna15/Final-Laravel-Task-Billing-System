@@ -10,7 +10,7 @@
             <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : ''  }}" href="{{ route('dashboard') }}">Dashboard</a>
         </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('index') ? 'active' : ''  }}" aria-current="page" href="{{ route('index') }}">Company</a>
+            <a class="nav-link {{ Request::routeIs('company.index') ? 'active' : ''  }}" aria-current="page" href="{{ route('company.index') }}">Company</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('product.index') ? 'active' : ''  }}" aria-current="page" href="{{ route('product.index') }}">Product</a>

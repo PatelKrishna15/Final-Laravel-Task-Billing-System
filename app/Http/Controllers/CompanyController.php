@@ -63,13 +63,13 @@ class CompanyController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         // $data->save();
-        return redirect()->route('index');
+        return redirect()->route('company.index');
     }
     public function delete($id)
     {
         $id = decrypt($id);
         Company::where('id',$id)->delete();
-        return redirect()->route('index');
+        return redirect()->route('company.index');
 
     }
     public function edit($id)

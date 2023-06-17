@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+    
     <div class="card mt-2 p-3">
         <form action="{{ route('product.store') }}" id="formSubmit" method="POST" enctype="multipart/form-data">
             @csrf
@@ -31,8 +32,8 @@
                 </div>
                 
                 <div class="col-md-6">
-                    <label for="product_company" class="form-label">Select Company</label>
-                    <select id="product_company" class="form-select " name="product_company" >
+                    <label for="company_id" class="form-label">Select Company</label>
+                    <select id="company_id" class="form-select " name="company_id" >
                         <option value="" selected disabled>Select Company Name</option>
                         @forelse ($company as $data)
                         <option value="{{ $data->id }}">{{ $data->name }}</option>
@@ -40,7 +41,7 @@
                         <option value="">No company found.</option>
                         @endforelse
                     </select>
-                    @error('product_company')
+                    @error('company_id')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -69,6 +70,7 @@
                     </thead>
                     <tbody>
                         @foreach ($product as $item)
+                        {{-- @dd($item->product_company) --}}
                             <tr>
                                 <th scope="row">{{ $i++ }} </th>
                                 <td>{{ $item->product_name }}</td>
@@ -76,9 +78,8 @@
                                 <td>{{ $item->product_price}}</td>
                                 <td>{{ $item->company->name}}</td>
                                 <td>
-                                    <a class="btn btn-success" href="{{ route('product.edit', encrypt($item->id)) }}">Edit</a>
-                                    <a class="btn btn-danger"
-                                        href="{{ route('delete', encrypt($item->id)) }}">Delete</a>
+                                    <a  href="{{ route('product.edit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a  href="{{route('product.delete',encrypt($item->id)) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                         @endforeach

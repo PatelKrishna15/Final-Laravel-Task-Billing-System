@@ -33,7 +33,7 @@ class ProductController extends Controller
                 'product_name' => 'required',
                 'product_img' => 'required',
                 'product_price' => 'required',
-                'product_company' => 'required',
+                'company_id' => 'required',
             ]);
            
             $imagename = $img_t->product_img;
@@ -46,15 +46,21 @@ class ProductController extends Controller
             'product_name'=>$request->product_name,
             'product_img'=>$product_img=$imagename,
             'product_price'=>$request->product_price,
-            'product_company'=>$request->product_company,
+            'company_id'=>$request->company_id,
             
         ]);
-
         return redirect()->route('product.index');
     }
     public function edit($id)
     {
+        $id = decrypt($id);
         $product = Product::where('id',$id)->first();
-        return view('profile.edit',compact('product'));
+        return view('product.edit',compact('product'));
+    }
+    public function delete($id)
+    {
+        $id = decrypt($id);
+        Product::where('id',$id)->delete();
+        return redirect()->route('product.index');
     }
 }

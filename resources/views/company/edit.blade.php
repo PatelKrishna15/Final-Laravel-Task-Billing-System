@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-danger" href="{{route('index')}}">Back</a>
+                        <a class="btn btn-danger" href="{{route('company.index')}}">Back</a>
                         <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
                     </div>
             </form>

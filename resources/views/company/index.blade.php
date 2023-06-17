@@ -89,17 +89,18 @@
                         </thead>
                         <tbody>
                             @foreach ($company as $item)
+                            {{-- @dd($item->country->name) --}}
                                 <tr>
                                     <th scope="row">{{ $i++ }} </th>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->phone }}</td>
+                                    
                                     {{-- <td><img src="{{ asset('images/' . $item->image) }}"></td> --}}
                                     <td>{{ $item->country->name }}</td>
                                     <td>
                                         <a class="btn btn-success" href="{{ route('edit', encrypt($item->id)) }}"
                                             data-id="{{ $item->id }}">Edit</a>
-                                        <a class="btn btn-danger"
-                                            href="{{ route('delete', encrypt($item->id)) }}"data-id="{{ $item->id }}">Delete</a>
+                                        {{-- <a class="btn btn-danger" href="{{ route('company.delete',encrypt($item->id)) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a> --}}
                                     </td>
                                 </tr>
                             @endforeach
