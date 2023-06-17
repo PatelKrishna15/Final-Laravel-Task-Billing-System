@@ -4,7 +4,7 @@
         <div class="card mt-2 p-3">
             <form action="{{ route('store') }}" id="formSubmit" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="id" value="{{ $data->id }}">
+                <input type="hidden" name="id" id="id" value="{{ $data->id }}">
                 <div class="row">
                     <div class="col-md-4">
                         <label for="name" class="form-label ">Company Name</label>
@@ -46,6 +46,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <a class="btn btn-danger" href="{{route('index')}}">Back</a>
                         <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
                     </div>
             </form>

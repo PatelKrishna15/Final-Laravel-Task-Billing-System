@@ -52,5 +52,9 @@ class ProductController extends Controller
 
         return redirect()->route('product.index');
     }
+    public function edit($id)
+    {
+        $product = Product::where('id',$id)->first();
+        return view('profile.edit',compact('product'));
     }
-
+}
