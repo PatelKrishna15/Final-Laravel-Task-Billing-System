@@ -7,6 +7,9 @@ use App\Models\Country;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
 
 class CompanyController extends Controller
 {
@@ -49,7 +52,7 @@ class CompanyController extends Controller
             $imagename = $img_t->image;
         }
        
-        Company::updateOrCreate([
+       $data = Company::updateOrCreate([
             'id'=>$request->id,
         ],
         [
@@ -62,7 +65,8 @@ class CompanyController extends Controller
             'country_id'=>$request->country_id,
             'user_id' => Auth::user()->id,
         ]);
-        // $data->save();
+        view()->share('company',$data);
+        // $pdf =Pdf::loadView('company.index');
         return redirect()->route('company.index');
     }
     public function delete($id)

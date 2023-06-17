@@ -37,7 +37,7 @@
                     <select id="company_id" class="form-select " name="company_id" >
                         <option value="" selected disabled>Select Company Name</option>
                         @forelse ($company as $com)
-                        <option value="{{ $com->id }}"{{ $com->company_id == $com->id?'selected':'' }}>{{$com->name}}</option>
+                        <option value="{{ $com->id }}"{{ $product->company_id == $com->id?'selected':'' }}>{{$com->name}}</option>
                         @empty
                         <option value="">No company found.</option>
                         @endforelse

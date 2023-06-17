@@ -30,11 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('company/index',[CompanyController::class,'index'])->name('company.index');
     Route::post('company/store',[CompanyController::class,'store'])->name('store');
-    Route::get('delete/{id}',[CompanyController::class,'delete'])->name('company.delete');
-    Route::get('edit/{id}',[CompanyController::class,'edit'])->name('edit');
+    // Route::get('/delete/{id}',[CompanyController::class,'delete'])->name('company.delete');
+    // Route::get('/edit/{id}',[CompanyController::class,'edit'])->name('company.edit');
+    Route::get('/company/{id}/edit',[CompanyController::class,'edit'])->name('companyedit');
+    Route::get('/company/{id}/delete',[CompanyController::class,'delete'])->name('companydelete');
     Route::get('product/index',[ProductController::class,'index'])->name('product.index');
     Route::post('product/store',[ProductController::class,'store'])->name('product.store');
-    Route::get('product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+    Route::get('/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
     Route::get('/delete/{id}',[ProductController::class,'delete'])->name('product.delete');
 });
 
