@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::post('product/store',[ProductController::class,'store'])->name('product.store');
     Route::get('/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
     Route::get('/delete/{id}',[ProductController::class,'delete'])->name('product.delete');
+    Route::get('customer/index',[CustomerController::class,'index'])->name('customer.index');
+    Route::post('customer/store',[CustomerController::class,'store'])->name('customer.store');
 });
 
 

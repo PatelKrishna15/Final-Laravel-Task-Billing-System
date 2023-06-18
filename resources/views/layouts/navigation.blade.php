@@ -15,6 +15,9 @@
           <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('product.index') ? 'active' : ''  }}" aria-current="page" href="{{ route('product.index') }}">Product</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::routeIs('customer.index') ? 'active' : ''  }}" aria-current="page" href="{{ route('customer.index') }}">Customer</a>
+          </li>
         </ul>
         <form method="POST" action="{{ route('logout') }}" class="d-flex">
             @csrf

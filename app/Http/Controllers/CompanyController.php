@@ -53,7 +53,7 @@ class CompanyController extends Controller
         }
        
        $data = Company::updateOrCreate([
-            'id'=>$request->id,
+            'id'=>$request->id,     
         ],
         [
             'name'=>$request->name,
