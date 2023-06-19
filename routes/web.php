@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('company/index',[CompanyController::class,'index'])->name('company.index');
-    Route::post('company/store',[CompanyController::class,'store'])->name('store');
+    Route::post('company/store',[CompanyController::class,'store'])->name('company.store');
     // Route::get('/delete/{id}',[CompanyController::class,'delete'])->name('company.delete');
     // Route::get('/edit/{id}',[CompanyController::class,'edit'])->name('company.edit');
     Route::get('/company/{id}/edit',[CompanyController::class,'edit'])->name('companyedit');
@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete/{id}',[ProductController::class,'delete'])->name('product.delete');
     Route::get('customer/index',[CustomerController::class,'index'])->name('customer.index');
     Route::post('customer/store',[CustomerController::class,'store'])->name('customer.store');
+    Route::get('edit/{id}',[CustomerController::class,'edit'])->name('customer.edit');
+    Route::get('delete/{id}',[CustomerController::class,'delete'])->name('customer.delete');
 });
 
 

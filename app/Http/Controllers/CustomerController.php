@@ -14,14 +14,14 @@ class CustomerController extends Controller
     }
     public function store(Request $request)
     {
-        $img_t = Customer::where('id',$request->id)->first(); 
+        $img_t =Customer::where('id',$request->id)->first(); 
 
-        if($request->custmer_img != null || $request->customer_img != ''){
-            $customer_img =$request->file('image');
+        if($request->customer_img != null || $request->customer_img != ''){
+            $customer_img =$request->file('customer_img');
             $imagename = time().'.'.$customer_img->extension();
-            $request->customer_img->move(public_path('images'),$imagename);
+            $request->customer_img->move(public_path('c_images'),$imagename);
         }elseif($request->customer_img == null){
-            $request->validate([
+             $request->validate([
                 'customer_name' => 'required',
                 'industry' => 'required',
                 'contact_person' => 'required',
@@ -29,20 +29,36 @@ class CustomerController extends Controller
                 'customer_img' => 'required',
                 'address' => 'required',
                 'postal_code' => 'required',
-             
+                
             ]);
            
-            $imagename = $img_t->image;
+            $imagename = $img_t->customer_img;
         }
         Customer::updateOrCreate([
+            'id'=>$request->id,
+        ],
+        [
             'customer_name'=>$request->customer_name,
             'industry'=>$request->industry,
             'contact_person'=>$request->contact_person,
             'phone'=>$request->phone,
-            'customer_img'=>$request->customer_img,
+            'customer_img'=>$customer_img=$imagename,
             'address'=>$request->address,
             'postal_code'=>$request->postal_code,
         ]);
-        return redirect()->route('company.index');
+        return redirect()->route('customer.index');
+    }
+    public function edit($id)
+    {
+        $id = decrypt($id);
+        $customer = Customer::where('id',$id)->first();
+        return view('customer.edit',compact('customer'));
+    }
+    
+    public function delete($id)
+    {
+        $id = decrypt($id);
+        Customer::where('id',$id)->delete();
+        return redirect()->route('customer.index');
     }
 }

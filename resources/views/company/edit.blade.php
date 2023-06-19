@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="card mt-2 p-3">
-            <form action="{{ route('store') }}" id="formSubmit" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('company.store') }}" id="formSubmit" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" id="id" value="{{ $data->id }}">
                 <div class="row">
