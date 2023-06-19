@@ -78,7 +78,7 @@
                                 {{-- <td><img src="{{ asset('images/' . $item->image) }}"></td> --}}
                                 <td>{{ $item->country->name }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="{{ route('edit', encrypt($item->id)) }}"
+                                    <a class="btn btn-success" href="{{ route('companyedit', encrypt($item->id)) }}"
                                         data-id="{{ $item->id }}">Edit</a> 
                                      {{-- <a class="btn btn-danger"data-url="{{ route('delete', $item->id) }}"data-id="{{ $item->id }}">Delete</a> --}}
                                 </td>

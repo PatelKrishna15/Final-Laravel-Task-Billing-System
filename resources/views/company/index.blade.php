@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="card mt-2 p-3">
-            <form action="{{ route('store') }}" id="formSubmit" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('company.store') }}" id="formSubmit" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-4">
@@ -77,7 +77,7 @@
         </div>
     </div>
     <div class="container">
-        {{-- <a href="{{route('company.index')}}">Export TO PDF</a> --}}
+        <a href="{{route('company.export')}}">Export TO PDF</a>
         <div class="card mt-2 p-3">
             <div class="row">
                 <div class="col-12">
@@ -101,7 +101,7 @@
                                     <td>
                                         <a href="{{ route('companyedit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <a href="{{ route('companydelete', encrypt($item->id)) }}"><i class="fa fa-trash "aria-hidden="true"></i></a>
-                                        <a href="{{route('company.index')}}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a>
+                                        <a href="{{route('company.export_ind',$item->id)}}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -19,7 +19,7 @@ class CustomerController extends Controller
         if($request->customer_img != null || $request->customer_img != ''){
             $customer_img =$request->file('customer_img');
             $imagename = time().'.'.$customer_img->extension();
-            $request->customer_img->move(public_path('c_images'),$imagename);
+            $request->customer_img->move(public_path('c_images/'),$imagename);
         }elseif($request->customer_img == null){
              $request->validate([
                 'customer_name' => 'required',

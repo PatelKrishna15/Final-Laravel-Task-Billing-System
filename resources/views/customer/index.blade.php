@@ -103,7 +103,8 @@
                                     <td>
                                         <a  href="{{ route('customer.edit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <a  href="{{route('customer.delete',encrypt($item->id)) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                        {{-- <a href=""><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a> --}}
+                                
+                                        <a class="btn btn-primary" href="{{ route('company.index') }}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

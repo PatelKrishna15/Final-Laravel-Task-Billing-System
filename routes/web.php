@@ -32,7 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('company/index',[CompanyController::class,'index'])->name('company.index');
     Route::post('company/store',[CompanyController::class,'store'])->name('company.store');
     // Route::get('/delete/{id}',[CompanyController::class,'delete'])->name('company.delete');
-    // Route::get('/edit/{id}',[CompanyController::class,'edit'])->name('company.edit');
+    // Route::get('edit/{id}',[CompanyController::class,'edit'])->name('company.edit');
+    Route::get('company/export',[CompanyController::class,'export'])->name('company.export');
+    Route::get('company/export/{id}',[CompanyController::class,'export_ind'])->name('company.export_ind');
     Route::get('/company/{id}/edit',[CompanyController::class,'edit'])->name('companyedit');
     Route::get('/company/{id}/delete',[CompanyController::class,'delete'])->name('companydelete');
     Route::get('product/index',[ProductController::class,'index'])->name('product.index');
@@ -42,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('customer/index',[CustomerController::class,'index'])->name('customer.index');
     Route::post('customer/store',[CustomerController::class,'store'])->name('customer.store');
     Route::get('edit/{id}',[CustomerController::class,'edit'])->name('customer.edit');
+
     Route::get('delete/{id}',[CustomerController::class,'delete'])->name('customer.delete');
 });
 

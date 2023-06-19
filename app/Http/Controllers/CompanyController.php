@@ -26,6 +26,17 @@ class CompanyController extends Controller
         $company = Company::get();
         return view('company.index',compact('company'));
     }
+    public function export(){
+        $company = Company::get();
+        $pdf = Pdf::loadView('company.pdf', compact('company'));
+        return $pdf->download('company_list.pdf');
+    }
+    public function export_ind($id){
+        $company = Company::where('id',$id)->first();
+        $pdf = Pdf::loadView('company.pdf_ind',compact('company'));
+        $name = $company->name;
+        return $pdf->download("$name.pdf");
+    }
    
     public function store(Request $request)
     {
@@ -66,7 +77,7 @@ class CompanyController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         view()->share('company',$data);
-        // $pdf =Pdf::loadView('company.index');
+      
         return redirect()->route('company.index');
     }
     public function delete($id)
