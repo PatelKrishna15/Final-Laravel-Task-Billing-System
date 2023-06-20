@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
+            $table->string('customer_name');
+            $table->string('message');
+            $table->string('subject');
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }

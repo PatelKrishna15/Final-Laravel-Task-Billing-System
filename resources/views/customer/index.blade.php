@@ -84,9 +84,10 @@
                                 <th scope="col">Industry</th>
                                 <th scope="col">Contact Person</th>
                                 <th scope="col">Phone</th>
-                                <th scope="col">Customer Image</th>
+                                {{-- <th scope="col">Customer Image</th> --}}
                                 <th scope="col">Address</th>
                                 <th scope="col">Postal Code</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,14 +98,13 @@
                                     <td>{{ $item->industry }}</td>
                                     <td>{{ $item->contact_person }}</td>
                                     <td>{{ $item->phone }}</td>
-                                    <td><img src="{{ asset('c_images/' . $item->customer_img) }}" height="30px" width="50px"></td>
+                                    {{-- <td><img src="{{ asset('c_images/' . $item->customer_img) }}" height="30px" width="50px"></td> --}}
                                     <td>{{ $item->address }}</td>
                                     <td>{{ $item->postal_code }}</td>
                                     <td>
                                         <a  href="{{ route('customer.edit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <a  href="{{route('customer.delete',encrypt($item->id)) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                
-                                        <a class="btn btn-primary" href="{{ route('company.index') }}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a>
+                                         {{-- <a class="btn btn-primary" href="{{ route('company.index') }}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a> --}}
                                     </td>
                                 </tr>
                             @endforeach

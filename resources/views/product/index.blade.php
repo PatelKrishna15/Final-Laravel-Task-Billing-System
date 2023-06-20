@@ -53,7 +53,7 @@
     </div>
 </div>
 <div class="container">
-
+    <a href="{{route('product.export')}}" class="btn bn-sm btn-success mt-2">Export TO PDF</a>
     <div class="card mt-2 p-3">
         <div class="row">
             <div class="col-12">
@@ -78,7 +78,7 @@
                                 <td>{{ $item->product_price}}</td>
                                 <td>{{ $item->company->name}}</td>
                                 <td>
-                                    <a  href="{{ route('product.edit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a  href="{{route('product.edit',encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                     <a  href="{{route('product.delete',encrypt($item->id=random_int(0,1445654))) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     <a href=""><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a>
                                 </td>

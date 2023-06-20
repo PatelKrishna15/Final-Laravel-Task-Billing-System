@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,23 +30,30 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+  
     Route::get('company/index',[CompanyController::class,'index'])->name('company.index');
     Route::post('company/store',[CompanyController::class,'store'])->name('company.store');
-    // Route::get('/delete/{id}',[CompanyController::class,'delete'])->name('company.delete');
-    // Route::get('edit/{id}',[CompanyController::class,'edit'])->name('company.edit');
     Route::get('company/export',[CompanyController::class,'export'])->name('company.export');
     Route::get('company/export/{id}',[CompanyController::class,'export_ind'])->name('company.export_ind');
     Route::get('/company/{id}/edit',[CompanyController::class,'edit'])->name('companyedit');
     Route::get('/company/{id}/delete',[CompanyController::class,'delete'])->name('companydelete');
+  
     Route::get('product/index',[ProductController::class,'index'])->name('product.index');
     Route::post('product/store',[ProductController::class,'store'])->name('product.store');
-    Route::get('/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
-    Route::get('/delete/{id}',[ProductController::class,'delete'])->name('product.delete');
+    Route::get('product/export',[ProductController::class,'export'])->name('product.export');
+    Route::get('product/export',[ProductController::class,'export'])->name('product.export');
+    Route::get('product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+    Route::get('product/delete/{id}',[ProductController::class,'delete'])->name('product.delete');
+  
     Route::get('customer/index',[CustomerController::class,'index'])->name('customer.index');
     Route::post('customer/store',[CustomerController::class,'store'])->name('customer.store');
-    Route::get('edit/{id}',[CustomerController::class,'edit'])->name('customer.edit');
+    Route::get('customer/edit/{id}',[CustomerController::class,'edit'])->name('customer.edit');
+    Route::get('customer/delete/{id}',[CustomerController::class,'delete'])->name('customer.delete');
 
-    Route::get('delete/{id}',[CustomerController::class,'delete'])->name('customer.delete');
+    Route::get('notes/index',[NotesController::class,'index'])->name('notes.index');
+    Route::post('notes/store',[NotesController::class,'store'])->name('notes.store');
+    Route::get('notes/edit/{id}',[NotesController::class,'edit'])->name('notes.edit');
+    Route::get('notes/delete/{id}',[NotesController::class,'delete'])->name('notes.delete');
 });
 
 
