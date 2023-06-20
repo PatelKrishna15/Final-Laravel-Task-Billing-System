@@ -39,10 +39,16 @@ class NotesController extends Controller
         ]);
         return redirect()->route('notes.index');      
     }
-    public function delete($id)
+    public function delete($id) 
     {
         $id = decrypt($id);
         Notes::where('id',$id)->delete();
         return redirect()->route('notes.index');
+    }
+    public function edit($id) 
+    {
+        $id = decrypt($id);
+       $notes = Notes::where('id',$id)->first();
+        return view('notes.edit',compact('notes'));
     }
 }

@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="card mt-2 p-3">
-            <form action="{{ route('notes.store') }}" id="formSubmit" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('notes.store') }}" id="formSubmit" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
@@ -28,12 +28,20 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label for="message" class="form-label">Text</label>
+                        <label for="message" class="form-label">Message</label>
                         <textarea class="form-control" name="message" id="message" ></textarea>
                         @error('message')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    
+                </div>
+                <div class="col-md-6">
+                    <label for="status" class="form-label">Status</label>
+                    <input type="radio" name="status" id="status"  >Active   <input type="radio" name="status" id="status"  >Inactive                      
+                    @error('status')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="modal-footer">
 
@@ -54,21 +62,23 @@
                                 <th scope="col">Customer Name</th>
                                 <th scope="col">Subject</th>
                                 <th scope="col">Message</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {{-- @dd($notes) --}}
                             @foreach ($notes as $item)
                                 <tr>
                                     <th scope="row">{{ $i++ }} </th>
-                                    <td>{{ $item->customer_name }}</td>
-                                    <td>{{ $item->message }}</td>
+                                    <td>{{ $item->customer->customer_name }}</td>
                                     <td>{{ $item->subject }}</td>
+                                    <td>{{ $item->message }}</td>
+                                    <td>{{ $item->status }}</td>
+
                                     <td>
-                                        <a href="{{ route('notes.edit', encrypt($item->id)) }}"><i
-                                                class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                        <a href="{{ route('notes.delete', encrypt($item->id)) }}"><i
-                                                class="fa fa-trash "aria-hidden="true"></i></a>
+                                        <a href="{{ route('notes.edit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <a href="{{ route('notes.delete', encrypt($item->id)) }}"><i class="fa fa-trash "aria-hidden="true"></i></a>
                                         {{-- <a href="{{route('company.export_ind',$item->id)}}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a> --}}
                                     </td>
                                 </tr>
