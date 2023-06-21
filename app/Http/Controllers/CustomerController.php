@@ -10,14 +10,22 @@ class CustomerController extends Controller
 {
     public function index()
     {
+        $i =1;
+        view()->share('i',$i);
         $customer = Customer::get();
         return view('customer.index',compact('customer'));
     }
-    public function export_ind($id){
+    public function export(){
+        $customer = Customer::get();
+        $pdf = Pdf::loadView('customer.pdf', compact('customer'));
+        return $pdf->download('customer_list.pdf');
+    }
+    public function export_indv($id){
+        $id = decrypt($id);
         $customer= Customer::where('id',$id)->first();
         $pdf = Pdf::loadView('customer.pdf_ind',compact('customer'));
-        $name = $customer->customer_name;
-        return $pdf->download("$name.pdf");
+        $customer_name = $customer->customer_name;
+        return $pdf->download("$customer_name.pdf");
     }
     public function store(Request $request)
     {

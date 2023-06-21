@@ -10,7 +10,12 @@
                         <label for="customer_name" class="form-label">Customer Name</label>
                         <select id="customer_name" class="form-select " class="form-control" name="customer_name">
                             <option  selected disabled>Select Customer Name</option>
-                                <option value=" {{ $notes->customer_name == 'customer_name' ? 'selected' : ''}}">{{ $notes->customer->customer_name }}</option>
+                            @forelse ($customer as $data)
+                            <option value="{{ $data->id }}" {{ $data->id == $notes->customer_name ? 'selected' : '' }} >{{ $data->customer_name }}</option>
+                        @empty
+                            <option value="">No country found.</option>
+                        @endforelse
+                                <option value="{{ $notes->customer->customer_id }}" ></option>
                         </select>
                     </div>
                     <div class="col-md-6">

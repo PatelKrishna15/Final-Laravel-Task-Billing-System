@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
   
     Route::get('customer/index',[CustomerController::class,'index'])->name('customer.index');
     Route::post('customer/store',[CustomerController::class,'store'])->name('customer.store');
+    Route::get('customer/export',[customerController::class,'export'])->name('customer.export');
+    Route::get('customer/export/{id}',[CustomerController::class,'export_indv'])->name('customer.export_ind');
     Route::get('customer/edit/{id}',[CustomerController::class,'edit'])->name('customer.edit');
     Route::get('customer/delete/{id}',[CustomerController::class,'delete'])->name('customer.delete');
 

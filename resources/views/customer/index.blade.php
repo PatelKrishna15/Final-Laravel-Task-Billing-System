@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="container">
-
+        <a class="btn btn-success mt-2 " href="{{route('customer.export')}}">Export TO PDF</a>
         <h2 align=center>Customer Details</h2>
         <div class="card">
             <div class="row">
@@ -93,7 +93,7 @@
                         <tbody>
                             @foreach ($customer as $item)
                                 <tr>
-                                    <th scope="row">{{ $item->id }}</th>
+                                    <th scope="row">{{ $i++ }}</th>
                                     <td>{{ $item->customer_name }}</td>
                                     <td>{{ $item->industry }}</td>
                                     <td>{{ $item->contact_person }}</td>
@@ -104,7 +104,7 @@
                                     <td>
                                         <a  href="{{ route('customer.edit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <a  href="{{route('customer.delete',encrypt($item->id)) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                         {{-- <a class="btn btn-primary" href="{{ route('company.index') }}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a> --}}
+                                        <a href="{{route('customer.export_ind',encrypt($item->id))}}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
