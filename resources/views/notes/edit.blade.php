@@ -10,7 +10,7 @@
                         <label for="customer_name" class="form-label">Customer Name</label>
                         <select id="customer_name" class="form-select " class="form-control" name="customer_name">
                             <option  selected disabled>Select Customer Name</option>
-                                <option value="{{ $notes->customer_name }}"></option>
+                                <option value=" {{ $notes->customer_name == 'customer_name' ? 'selected' : ''}}">{{ $notes->customer->customer_name }}</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -24,13 +24,10 @@
                 </div>
                 <div class="col-md-6">
                     <label for="status" class="form-label">Status</label>
-                    <input type="radio" name="status" id="status" 
-                    @if ($notes->status == 'on')
-                        {{}}
-                    @else
-                        
-                    @endif
-                    >Active   <input type="radio" name="status" id="status"  >Inactive                      
+                    <input type="radio" name="status" id="status" value="active"
+                     {{ $notes->status == 'on' ? 'checked' : ''}} >Active   
+                     
+                     <input type="radio" name="status" id="status" value="off"  {{ $notes->status == 'off' ? 'checked' : ''}}>Inactive                      
                     @error('status')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

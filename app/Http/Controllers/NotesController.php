@@ -17,7 +17,7 @@ class NotesController extends Controller
     }
     public function index()
     {
-        $notes = Notes::get();
+        $notes = Notes::where('status','on')->get();
         return view('notes.index',compact('notes'));
     }
     public function store(Request $request)
@@ -30,10 +30,10 @@ class NotesController extends Controller
         ]);
         $status=$request->status;
         if(!is_null($status)){
-            $status=0;
+            $status='off';
         }
         else{
-            $status=1;
+            $status='on';
         }
         
         Notes::updateOrCreate([

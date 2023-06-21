@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -11,6 +12,12 @@ class CustomerController extends Controller
     {
         $customer = Customer::get();
         return view('customer.index',compact('customer'));
+    }
+    public function export_ind($id){
+        $customer= Customer::where('id',$id)->first();
+        $pdf = Pdf::loadView('customer.pdf_ind',compact('customer'));
+        $name = $customer->customer_name;
+        return $pdf->download("$name.pdf");
     }
     public function store(Request $request)
     {
@@ -34,6 +41,7 @@ class CustomerController extends Controller
            
             $imagename = $img_t->customer_img;
         }
+
         Customer::updateOrCreate([
             'id'=>$request->id,
         ],

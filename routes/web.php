@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,7 +55,18 @@ Route::middleware('auth')->group(function () {
     Route::post('notes/store',[NotesController::class,'store'])->name('notes.store');
     Route::get('notes/edit/{id}',[NotesController::class,'edit'])->name('notes.edit');
     Route::get('notes/delete/{id}',[NotesController::class,'delete'])->name('notes.delete');
+
+    Route::get('sendingmail/',function(){
+        $to_name = 'hk patel';  
+        $to_email = "krishahirapara666@gmail.com";
+        $data = array('name'=>'peter', 'body'=>"test mail like");
+        Mail::send('mail',$data ,function ($message) use ($to_name,$to_email){
+            $message->to($to_email)
+        
+            ->subject('web testing mail');
+        
+    });
 });
 
-
+});
 require __DIR__.'/auth.php';

@@ -41,7 +41,8 @@
                 </div>
                 <div class="col-md-6">
                     <label for="status" class="form-label">Status</label>
-                    <input type="radio" name="status" id="status"  >Active   <input type="radio" name="status" id="status"  >Inactive                      
+                    <input type="radio" name="status" id="status" value="on"  >Active   
+                    <input type="radio" name="status" id="status" value="off" >Inactive                      
                     @error('status')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -66,7 +67,7 @@
                                 <th scope="col">Customer Name</th>
                                 <th scope="col">Subject</th>
                                 <th scope="col">Message</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -79,7 +80,6 @@
                                     <td>{{ $item->subject }}</td>
                                     <td>{{ $item->message }}</td>
                                     <td>{{ $item->status }}</td>
-
                                     <td>
                                         <a href="{{ route('notes.edit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <a href="{{ route('notes.delete', encrypt($item->id)) }}"><i class="fa fa-trash "aria-hidden="true"></i></a>
