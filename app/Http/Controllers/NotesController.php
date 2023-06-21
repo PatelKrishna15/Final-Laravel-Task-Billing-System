@@ -28,6 +28,14 @@ class NotesController extends Controller
             'message' => 'required',
             'status' => 'required',
         ]);
+        $status=$request->status;
+        if(!is_null($status)){
+            $status=0;
+        }
+        else{
+            $status=1;
+        }
+        
         Notes::updateOrCreate([
             'id'=>$request->id,
         ],

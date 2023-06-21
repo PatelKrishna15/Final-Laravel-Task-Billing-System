@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+<link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/datatables.min.css" rel="stylesheet"/>
+
+<script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/datatables.min.js"></script>
     <div class="container">
         <div class="card mt-2 p-3">
             <form action="{{ route('notes.store') }}" id="formSubmit" method="POST">
@@ -50,12 +53,13 @@
             </form>
         </div>
     </div>
+   
     <div class="container">
         {{-- <a href="{{route('company.export')}}">Export TO PDF</a> --}}
         <div class="card mt-2 p-3">
             <div class="row">
                 <div class="col-12">
-                    <table class="table">
+                    <table class="table" id="myTable">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -67,7 +71,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @dd($notes) --}}
+                            
                             @foreach ($notes as $item)
                                 <tr>
                                     <th scope="row">{{ $i++ }} </th>
@@ -89,4 +93,5 @@
             </div>
         </div>
     </div>
-@endsection
+    
+    @endsection
