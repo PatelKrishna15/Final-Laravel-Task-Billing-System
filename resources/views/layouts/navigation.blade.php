@@ -21,6 +21,9 @@
           <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('notes.index') ? 'active' : ''  }}" aria-current="page" href="{{ route('notes.index') }}">Notes</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::routeIs('payment.paymentindex') ? 'active' : ''  }}" aria-current="page" href="{{ route('payment.paymentindex') }}">Payment</a>
+          </li>
         </ul>
         <form method="POST" action="{{ route('logout') }}" class="d-flex">
             @csrf

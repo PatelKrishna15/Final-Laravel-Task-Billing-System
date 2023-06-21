@@ -7,7 +7,7 @@
     </script>
     <div class="container">
         <div class="card mt-2 p-3">
-            <form action="{{ route('notes.store') }}" id="formSubmit" method="POST">
+            <form action="" id="formSubmit" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
@@ -25,33 +25,40 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label for="customer_name" class="form-label">Customer Name</label>
-                        <select id="customer_name" class="form-select " class="form-control" name="customer_name">
-                            <option value="" selected disabled>Select Customer Name</option>
-                            @forelse ($customer as $data)
-                                <option value="{{ $data->id }}">{{ $data->customer_name }}</option>
+                        <label for="company_name" class="form-label">Company Name</label>
+                        <select id="company_name" class="form-select " class="form-control" name="company_name">
+                            <option value="" selected disabled>Select Company Name</option>
+                            @forelse ($company as $data)
+                                <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @empty
                                 <option value="">No country found.</option>
                             @endforelse
                         </select>
-                        @error('customer_name')
+                        @error('company_name')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                     <div class="col-md-6">
-                        <label for="customer_name" class="form-label">Customer Name</label>
-                        <select id="customer_name" class="form-select " class="form-control" name="customer_name">
+                    <div class="col-md-6">
+                        <label for="product_name" class="form-label">Product Name</label>
+                        <select id="product_name" class="form-select " class="form-control" name="product_name">
                             <option value="" selected disabled>Select Customer Name</option>
-                            @forelse ($customer as $data)
-                                <option value="{{ $data->id }}">{{ $data->customer_name }}</option>
+                            @forelse ($product as $data)
+                                <option value="{{ $data->id }}">{{ $data->product_name }}</option>
                             @empty
                                 <option value="">No country found.</option>
                             @endforelse
                         </select>
-                        @error('customer_name')
+                        @error('product_name')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <label for="quantity" class="form-label">Quantity</label>
+                       
+                        @error('quantity')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>  
                 </div>
                 <div class="modal-footer">
 

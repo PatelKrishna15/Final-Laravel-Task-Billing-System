@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Mail;
@@ -68,6 +69,8 @@ Route::middleware('auth')->group(function () {
             ->subject('web testing mail');
         
     });
+
+    Route::get('payment/paymentindex',[PaymentController::class,'index'])->name('payment.paymentindex');
 });
 
 });
