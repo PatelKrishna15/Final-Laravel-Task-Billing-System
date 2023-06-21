@@ -82,7 +82,7 @@
                             @foreach ($notes as $item)
                                 <tr>
                                     <th scope="row">{{ $i++ }} </th>
-                                    <td>{{ $item->customer->customer_name }}</td>
+                                    <td>{{ $item->customer_name }}</td>
                                     <td>{{ $item->subject }}</td>
                                     <td>{{ $item->message }}</td>
                                     <td>{{ $item->status }}</td>
