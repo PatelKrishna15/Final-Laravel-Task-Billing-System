@@ -58,7 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::post('notes/store',[NotesController::class,'store'])->name('notes.store');
     Route::get('notes/edit/{id}',[NotesController::class,'edit'])->name('notes.edit');
     Route::get('notes/delete/{id}',[NotesController::class,'delete'])->name('notes.delete');
-
+    Route::get('payment/index',[PaymentController::class,'index'])->name('payment.index');
+    Route::post('payment/store',[PaymentController::class,'store'])->name('payment.store');
+    
     Route::get('sendingmail/',function(){
         $to_name = 'hk patel';  
         $to_email = "krishahirapara666@gmail.com";
@@ -66,11 +68,10 @@ Route::middleware('auth')->group(function () {
         Mail::send('mail',$data ,function ($message) use ($to_name,$to_email){
             $message->to($to_email)
         
-            ->subject('web testing mail');
-        
+            ->subject('web testing mail');       
     });
 
-    Route::get('payment/paymentindex',[PaymentController::class,'index'])->name('payment.paymentindex');
+
 });
 
 });

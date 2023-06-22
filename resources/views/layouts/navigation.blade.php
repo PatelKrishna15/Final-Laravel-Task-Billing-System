@@ -18,12 +18,14 @@
           <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('customer.index') ? 'active' : ''  }}" aria-current="page" href="{{ route('customer.index') }}">Customer</a>
           </li>
+         
           <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('notes.index') ? 'active' : ''  }}" aria-current="page" href="{{ route('notes.index') }}">Notes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('payment.paymentindex') ? 'active' : ''  }}" aria-current="page" href="{{ route('payment.paymentindex') }}">Payment</a>
+            <a class="nav-link {{ Request::routeIs('payment.index') ? 'active' : ''  }}" aria-current="page" href="{{ route('payment.index') }}">Payment</a>
           </li>
+         
         </ul>
         <form method="POST" action="{{ route('logout') }}" class="d-flex">
             @csrf
@@ -33,6 +35,7 @@
             {{ __('Log Out') }}
         </x-dropdown-link>
         </form>
+       
       </div>
     </div>
   </nav>
