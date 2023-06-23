@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::get('payment/index',[PaymentController::class,'index'])->name('payment.index');
     Route::post('payment/store',[PaymentController::class,'store'])->name('payment.store');
     
+    Route::get('getproducts',[PaymentController::class,'getproducts'])->name('getproducts');
     Route::get('sendingmail/',function(){
         $to_name = 'hk patel';  
         $to_email = "krishahirapara666@gmail.com";

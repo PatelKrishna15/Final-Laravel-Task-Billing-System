@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="company_name" class="form-label">Company Name</label>
-                        <select id="company_name" class="form-select " class="form-control" name="company_name">
+                        <select id="company_name" class="form-control" name="company_name" >
                             <option value="" selected disabled>Select Company Name</option>
                             @forelse ($company as $data)
                                 <option value="{{ $data->id }}">{{ $data->name }}</option>
@@ -43,12 +43,6 @@
                     <div class="col-md-4">
                         <label for="product_name" class="form-label">Product Name</label>
                         <select id="product_name" class="form-select " class="form-control" name="product_name">
-                            <option value="" selected disabled>Select Product Name</option>
-                            @forelse ($product as $data)
-                                <option value="{{ $data->id }}">{{ $data->product_name }}({{$data->product_price}})</option>
-                            @empty
-                                <option value="">No country found.</option>
-                            @endforelse
                         </select>
                         @error('product_name')
                             <span class="text-danger">{{ $message }}</span>
@@ -56,7 +50,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="qty" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="qty" step="1" min="1" max="300"
+                        <input type="number" class="form-control dynamic" id="qty" step="1" min="1" max="300"
                             name="quantity" value="1">
 
                         @error('quantity')
@@ -71,9 +65,9 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <label for="last_date" class="form-label">Last Date</label>
-                        <input type="date" name="last_date" id="last_date" class="form-control">
-                        @error('last_date')
+                        <label for="end_date" class="form-label">End Date</label>
+                        <input type="date" name="end_date" id="end_date" class="form-control">
+                        @error('end_date')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
@@ -137,8 +131,8 @@
                                     <td>{{ $item->payment_method }}</td>
                                     <td>
                                         <a href="{{ route('payment.edit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                        <a href="{{ route('payment.delete', encrypt($item->id)) }}"><i class="fa fa-trash "aria-hidden="true"></i></a> --}}
-                            {{-- <a href="{{route('company.export_ind',$item->id)}}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a>
+                                        <a href="{{ route('payment.delete', encrypt($item->id)) }}"><i class="fa fa-trash "aria-hidden="true"></i></a>
+                            <a href="{{route('company.export_ind',$item->id)}}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a>
                                     </td>
                                 </tr>
                             @endforeach --}}
@@ -148,4 +142,24 @@
             </div>
         </div>
     </div>
-@endsection
+<script>
+    $(document).ready(function(){
+        $("#company_name").on('change',function(){
+            
+            let company =$("#company_name").val();
+                       
+            $.ajax({
+                type:"GET",
+                url:"{{ route('getproducts') }}",
+                data:{
+                    company_id:company,     
+                },
+                success:function(data){
+                    $("#product_name").html("");
+                    $("#product_name").html(data);
+                }
+            });
+        });
+    });
+</script>
+    @endsection

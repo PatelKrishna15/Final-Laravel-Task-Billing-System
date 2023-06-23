@@ -28,6 +28,23 @@ class PaymentController extends Controller
     }
     public function store(Request $request)
     {
-        
+       
+    
+            $data =new Payment();
+            $data->customer_name = $request->customer_name;
+            $data->company_name = $request->company_name;
+            
+            $data->product_name = $request->product_name;
+
+            $data->quantity = $request->quantity;
+            $data->start_date = $request->start_date;
+            $data->end_date = $request->end_date;
+            $data->save();
+            return redirect()->route('payment.index');
+    }
+    public function getproducts(Request $request){
+        $products =Product::where('company_id',$request->company_id)->get();
+        $view = 'payment.list';
+        return view($view,compact('products'));
     }
 }
