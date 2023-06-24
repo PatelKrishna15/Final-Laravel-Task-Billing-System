@@ -28,17 +28,18 @@ class PaymentController extends Controller
     }
     public function store(Request $request)
     {
-       
     
+   @dd($product);
             $data =new Payment();
             $data->customer_name = $request->customer_name;
-            $data->company_name = $request->company_name;
-            
+            $data->company_name = $request->company_name;    
             $data->product_name = $request->product_name;
-
             $data->quantity = $request->quantity;
             $data->start_date = $request->start_date;
             $data->end_date = $request->end_date;
+            $data->payment_method = $request->payment_method;
+            $data->result =$request->product_price * $request->quantity; 
+   
             $data->save();
             return redirect()->route('payment.index');
     }

@@ -21,4 +21,8 @@ class Payment extends Model
     public function product(){
         return $this->belongsTo(Product::class,'product_name');
     }
+    // public function setTotalAttribute()
+    // {
+    //     $this->attributes['result'] = $this->quantity * $this->product_price;
+    // }
 }

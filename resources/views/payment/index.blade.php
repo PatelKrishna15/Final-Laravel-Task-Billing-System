@@ -7,7 +7,7 @@
     </script>
     <div class="container">
         <div class="card mt-2 p-3">
-            <form action="" id="formSubmit" method="POST">
+            <form action="{{ route('payment.store') }}" id="formSubmit" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
@@ -16,19 +16,19 @@
                             <select id="customer_name" class="form-select " class="form-control" name="customer_name">
                                 <option value="" selected disabled>Select Customer Name</option>
                                 @forelse ($customer as $data)
-                                <option value="{{ $data->id }}">{{ $data->customer_name }}</option>
+                                    <option value="{{ $data->id }}">{{ $data->customer_name }}</option>
                                 @empty
-                                <option value="">No country found.</option>
+                                    <option value="">No country found.</option>
                                 @endforelse
                             </select>
                             @error('customer_name')
-                            <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
                         <label for="company_name" class="form-label">Company Name</label>
-                        <select id="company_name" class="form-control" name="company_name" >
+                        <select id="company_name" class="form-control" name="company_name">
                             <option value="" selected disabled>Select Company Name</option>
                             @forelse ($company as $data)
                                 <option value="{{ $data->id }}">{{ $data->name }}</option>
@@ -50,17 +50,17 @@
                     </div>
                     <div class="col-md-2">
                         <label for="qty" class="form-label">Quantity</label>
-                        <input type="number" class="form-control dynamic" id="qty" step="1" min="1" max="300"
-                            name="quantity" value="1">
+                        <input type="number" class="form-control dynamic" id="qty" step="1" min="1"
+                            max="300" name="quantity" value="1">
 
                         @error('quantity')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <label for="first_date" class="form-label">Start Date</label>
-                        <input type="date" name="first_date" id="first_date" class="form-control">
-                        @error('first_date')
+                        <label for="start_date" class="form-label">Start Date</label>
+                        <input type="date" name="start_date" id="start_date" class="form-control">
+                        @error('start_date')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
@@ -76,11 +76,11 @@
                     <label for="payment_method" class="form-label">Product Name</label>
                     <select id="payment_method" class="form-select " class="form-control" name="payment_method">
                         <option value="" selected disabled>Select Product Name</option>
-                           <option value="in_cash">In Cash</option>
-                            <option value="bank_card">Bank Card</option>
-                            <option value="overbooking">Overbooking</option>
-                            <option value="credit invoice">Credit invoice</option>
-                            <option value="purchase_invoice">Purchase invoice</option>
+                        <option value="in_cash">In Cash</option>
+                        <option value="bank_card">Bank Card</option>
+                        <option value="overbooking">Overbooking</option>
+                        <option value="credit invoice">Credit invoice</option>
+                        <option value="purchase_invoice">Purchase invoice</option>
                     </select>
                     @error('payment_method')
                         <span class="text-danger">{{ $message }}</span>
@@ -96,7 +96,6 @@
     </div>
 
     <div class="container">
-        {{-- <a href="{{route('company.export')}}">Export TO PDF</a> --}}
         <div class="card mt-2 p-3">
             <div class="row">
                 <div class="col-12">
@@ -111,55 +110,36 @@
                                 <th scope="col">Start_Date</th>
                                 <th scope="col">End_Date</th>
                                 <th scope="col">Payment Method</th>
+                                <th scope="col">Result</th>
                                 <th scope="col">Actions</th>
-
-
-
                             </tr>
                         </thead>
                         <tbody>
 
-                            {{-- @foreach ($data as $item)
-                                <tr>
-                                    <th scope="row">{{ $i++ }} </th>
-                                    <td>{{ $item->customer_name }}</td>
-                                    <td>{{ $item->company_name }}</td>
-                                    <td>{{ $item->product_name }}</td>
-                                    <td>{{ $item->quantity }}</td>
-                                    <td>{{ $item->start_date }}</td>
-                                    <td>{{ $item->end_date }}</td>
-                                    <td>{{ $item->payment_method }}</td>
-                                    <td>
-                                        <a href="{{ route('payment.edit', encrypt($item->id)) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                        <a href="{{ route('payment.delete', encrypt($item->id)) }}"><i class="fa fa-trash "aria-hidden="true"></i></a>
-                            <a href="{{route('company.export_ind',$item->id)}}"><i class="fa fa-file-pdf-o" style="font-size:17px;color:red"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-<script>
-    $(document).ready(function(){
-        $("#company_name").on('change',function(){
-            
-            let company =$("#company_name").val();
-                       
-            $.ajax({
-                type:"GET",
-                url:"{{ route('getproducts') }}",
-                data:{
-                    company_id:company,     
-                },
-                success:function(data){
-                    $("#product_name").html("");
-                    $("#product_name").html(data);
-                }
+    <script>
+        $(document).ready(function() {
+            $("#company_name").on('change', function() {
+
+                let company = $("#company_name").val();
+
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('getproducts') }}",
+                    data: {
+                        company_id: company,
+                    },
+                    success: function(data) {
+                        $("#product_name").html("");
+                        $("#product_name").html(data);
+                    }
+                });
             });
         });
-    });
-</script>
-    @endsection
+    </script>
+@endsection
