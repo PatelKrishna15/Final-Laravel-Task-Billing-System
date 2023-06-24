@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Payment;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -23,13 +24,16 @@ class PaymentController extends Controller
     }
     public function index()
     {
-        $data = Payment::get();
-        return view('payment.index',compact('data'));
+        $payment = Payment::get();
+        return view('payment.index',compact('payment'));
     }
     public function store(Request $request)
     {
-    
-   @dd($product);
+        $pr = Product::where('id',$request->product_name)->first();
+        $price =$pr->product_price;
+
+        // @dd($pr->product_price);
+
             $data =new Payment();
             $data->customer_name = $request->customer_name;
             $data->company_name = $request->company_name;    
@@ -38,8 +42,7 @@ class PaymentController extends Controller
             $data->start_date = $request->start_date;
             $data->end_date = $request->end_date;
             $data->payment_method = $request->payment_method;
-            $data->result =$request->product_price * $request->quantity; 
-   
+            $data->result =$request->quantity* $price ; 
             $data->save();
             return redirect()->route('payment.index');
     }
@@ -47,5 +50,20 @@ class PaymentController extends Controller
         $products =Product::where('company_id',$request->company_id)->get();
         $view = 'payment.list';
         return view($view,compact('products'));
+    }
+    public function delete($id)
+    {
+        $id =decrypt($id);
+        Payment::where('id',$id)->delete();
+        return redirect()->route('payment.index');
+
+    }
+    public function export_ind($id){
+        
+        $id = decrypt($id);
+        $payment= Payment::where('id',$id)->first();
+        $pdf = Pdf::loadView('payment.pdf_ind',compact('payment'));
+        $customer_name = $payment->customer_name;
+        return $pdf->download("$customer_name.pdf");
     }
 }

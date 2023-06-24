@@ -43,6 +43,7 @@
                     <div class="col-md-4">
                         <label for="product_name" class="form-label">Product Name</label>
                         <select id="product_name" class="form-select " class="form-control" name="product_name">
+
                         </select>
                         @error('product_name')
                             <span class="text-danger">{{ $message }}</span>
@@ -110,12 +111,30 @@
                                 <th scope="col">Start_Date</th>
                                 <th scope="col">End_Date</th>
                                 <th scope="col">Payment Method</th>
-                                <th scope="col">Result</th>
+                                <th scope="col">Total</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($payment as $item)
+                                <tr>
+                                    <th scope="row">{{ $i++ }} </th>
+                                    <td>{{ $item->customer->customer_name }}</td>
+                                    <td>{{ $item->company_name }}</td>
+                                    <td>{{ $item->product_name }}</td>
+                                    <td>{{ $item->quantity }}</td>
+                                    <td>{{ $item->start_date }}</td>
+                                    <td>{{ $item->end_date }}</td>
+                                    <td>{{ $item->payment_method }}</td>
+                                    <td>{{ $item->result }}</td>
+                                    <td> <a href="{{ route('payment.delete', encrypt($item->id)) }}"><i
+                                                class="fa fa-trash "aria-hidden="true"></i></a>
+                                            <a href="{{ route('payment.export_ind', encrypt($item->id) )}}"><i
+                                                    class="fa fa-file-pdf-o"
+                                                    style="font-size:17px;color:red"></i></a>
+                                    </td>
+                            @endforeach
+                            </tr>
                         </tbody>
                     </table>
                 </div>
