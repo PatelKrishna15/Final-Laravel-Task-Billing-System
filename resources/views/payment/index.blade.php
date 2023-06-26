@@ -129,7 +129,7 @@
                                     <td>{{ $item->result }}</td>
                                     <td> <a href="{{ route('payment.delete', encrypt($item->id)) }}"><i
                                                 class="fa fa-trash "aria-hidden="true"></i></a>
-                                            <a href="{{ route('payment.export_ind', encrypt($item->id) )}}"><i
+                                            <a href="{{ route('payment.mail_pdf', encrypt($item->id) )}}"><i
                                                     class="fa fa-file-pdf-o"
                                                     style="font-size:17px;color:red"></i></a>
                                     </td>

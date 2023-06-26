@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -65,5 +66,20 @@ class PaymentController extends Controller
         $pdf = Pdf::loadView('payment.pdf_ind',compact('payment'));
         $customer_name = $payment->customer_name;
         return $pdf->download("$customer_name.pdf");
+    }
+    public function sendMailWithPDF(Request $request)
+    {
+        // $payment= Payment::where('id',$request->id)->first();
+        // $email=$payment->customer->customer_name
+
+        // $pdf = PDF::loadView('payment.pdf_mail', $payment);
+
+        // Mail::send('payment.pdf_mail', $payment, function ($message) use ($payment, $pdf) {
+        //     $message->to($email)
+        //         ->subject($subject)
+        //         ->attachData($pdf->output(), "test.pdf");
+        // });
+
+        // echo "email send successfully !!";
     }
 }

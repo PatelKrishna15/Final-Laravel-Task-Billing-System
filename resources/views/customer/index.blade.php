@@ -14,6 +14,14 @@
                         @enderror
                     </div>
                     <div class="col-md-4">
+                        <label for="customer_email" class="form-label ">Customer Email</label>
+                        <input type="email" class="form-control" name="customer_email" id="customer_email"
+                            value="{{ old('customer_email') }}">
+                        @error('customer_email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
                         <label for="industry" class="form-label">Industry</label>
                         <input type="text" class="form-control" name="industry" id="industry"
                             value="{{ old('industry') }}">
@@ -81,6 +89,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Customer Name</th>
+                                <th scope="col">Customer Email</th>
                                 <th scope="col">Industry</th>
                                 <th scope="col">Contact Person</th>
                                 <th scope="col">Phone</th>
@@ -95,6 +104,7 @@
                                 <tr>
                                     <th scope="row">{{ $i++ }}</th>
                                     <td>{{ $item->customer_name }}</td>
+                                    <td>{{ $item->customer_email }}</td>
                                     <td>{{ $item->industry }}</td>
                                     <td>{{ $item->contact_person }}</td>
                                     <td>{{ $item->phone }}</td>
