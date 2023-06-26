@@ -72,9 +72,9 @@ class PaymentController extends Controller
         $id = decrypt($id);
         $payment= Payment::where('id',$id)->first();
         $customer = Customer::where('id',$payment->customer_name)->first();
-     
-        $email = $payment->customer_email;
-        $pdf = PDF::loadView('payment.pdf_mail', $payment,$email,$customer);
+        // dd($customer->customer_email);
+        // $email = $customer->customer_email;
+        $pdf = PDF::loadView('payment.pdf_mail', $payment,$customer);
 
         Mail::send('payment.pdf_mail',$payment,function ($message) use ($payment, $pdf) {
             $message->to($payment)
