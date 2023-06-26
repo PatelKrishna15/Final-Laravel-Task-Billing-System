@@ -118,8 +118,9 @@
                         <tbody>
                             @foreach ($payment as $item)
                                 <tr>
+                                    {{-- @dd($item->customer_name) --}}
                                     <th scope="row">{{ $i++ }} </th>
-                                    <td>{{ $item->customer->customer_name }}</td>
+                                    <td>{{ $item->customer_name }}</td>
                                     <td>{{ $item->company_name }}</td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->quantity }}</td>

@@ -38,6 +38,7 @@ class CustomerController extends Controller
         }elseif($request->customer_img == null){
              $request->validate([
                 'customer_name' => 'required',
+                'customer_email' => 'required',
                 'industry' => 'required',
                 'contact_person' => 'required',
                 'phone' => 'required',
@@ -55,6 +56,7 @@ class CustomerController extends Controller
         ],
         [
             'customer_name'=>$request->customer_name,
+            'customer_email'=>$request->customer_email,
             'industry'=>$request->industry,
             'contact_person'=>$request->contact_person,
             'phone'=>$request->phone,

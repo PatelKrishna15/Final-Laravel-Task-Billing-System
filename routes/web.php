@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::get('getproducts',[PaymentController::class,'getproducts'])->name('getproducts');
     // Route::get('payment/export/{id}',[PaymentController::class,'export_ind'])->name('payment.export_ind');
     Route::get('payment/delete/{id}',[PaymentController::class,'delete'])->name('payment.delete');
-    Route::get('send_mail_pdf', [PaymentController::class, 'sendMailWithPDF'])->name('payment.mail_pdf');
+    Route::get('send_mail_pdf/{id}', [PaymentController::class, 'sendMailWithPDF'])->name('payment.mail_pdf');
 
     
 });
