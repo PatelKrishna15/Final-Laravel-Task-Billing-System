@@ -70,18 +70,27 @@ class PaymentController extends Controller
     public function sendMailWithPDF($id)
     {
         $id = decrypt($id);
+        $payment =[];
         $payment= Payment::where('id',$id)->first();
-        $customer = Customer::where('id',$payment->customer_name)->first();
-        // dd($customer->customer_email);
-        // $email = $customer->customer_email;
-        $pdf = PDF::loadView('payment.pdf_mail', $payment,$customer);
-
+        $payment['email'] = $payment->customer->customer_email;
+        $payment['co_name'] = $payment->customer->customer_name;
+        $payment['p_name'] = $payment->product_name;
+        $payment['qty'] = $payment->quantity;
+        $payment['s_date'] = $payment->start_date;
+        $payment['e_date'] = $payment->end_date;
+        $payment['payment_method'] = $payment->payment_method;
+        $payment['total'] = $payment->result;
+      
+        $pdf = PDF::loadView('payment.pdf_mail',compact('payment'));
         Mail::send('payment.pdf_mail',$payment,function ($message) use ($payment, $pdf) {
-            $message->to($payment)
-                ->subject('Billing')
+            
+            $message->to($payment['email'])
+                ->subject('About Billing')
                 ->attachData($pdf->output(), "billing.pdf");
         });
 
         echo "email send successfully !!";
     }
+    
+
 }
