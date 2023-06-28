@@ -70,27 +70,36 @@ class PaymentController extends Controller
     public function sendMailWithPDF($id)
     {
         $id = decrypt($id);
-        $payment =[];
+    
         $payment= Payment::where('id',$id)->first();
-        $payment['email'] = $payment->customer->customer_email;
-        $payment['co_name'] = $payment->customer->customer_name;
-        $payment['p_name'] = $payment->product_name;
-        $payment['qty'] = $payment->quantity;
-        $payment['s_date'] = $payment->start_date;
-        $payment['e_date'] = $payment->end_date;
-        $payment['payment_method'] = $payment->payment_method;
-        $payment['total'] = $payment->result;
+        $data['customer_email'] = $payment->customer->customer_email;
+        $data['customer_name'] = $payment->customer->customer_name;
+        $data['product_name'] = $payment->product_name;
+        $data['quantity'] = $payment->quantity;
+        $data['start_date'] = $payment->start_date;
+        $data['end_date'] = $payment->end_date;
+        $data['payment_method'] = $payment->payment_method;
+        $data['result'] = $payment->result;
       
-        $pdf = PDF::loadView('payment.pdf_mail',compact('payment'));
-        Mail::send('payment.pdf_mail',$payment,function ($message) use ($payment, $pdf) {
+        $pdf = PDF::loadView('payment.pdf_mail',$data);
+        Mail::send('payment.pdf_mail',$data,function ($message) use ($data, $pdf) {
             
-            $message->to($payment['email'])
-                ->subject('About Billing')
-                ->attachData($pdf->output(), "billing.pdf");
+            $message->to($data['customer_email']);
+            $message ->subject('About Billing');
+            $message ->attachData($pdf->output(), "billing.pdf");
         });
+        // toastr()->addSuccess('Your account has been restored.');
+        flash()->success('Your information has been saved.')->flash();
+        return redirect()->route('payment.index');
+      
 
-        echo "email send successfully !!";
     }
+    // Mail::send(['name' => $name], function ($message) use ($name, $imie, $nazwisko, $email, $password) {
+    //     $message->from('us@example.com', 'System Magazyn');
+    //     $message->attach('Your temporary password: '.['password' => $password]);
+    //     $message->to(['email'=>$email])->subject('Rejestracja Magazyn');
+
+    // });
     
 
 }

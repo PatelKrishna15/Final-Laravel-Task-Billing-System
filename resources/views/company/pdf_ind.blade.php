@@ -142,15 +142,15 @@
 										</tr>
 									</thead>
 									<tbody>
-										@foreach ($company as $item)
+										{{-- @foreach ($company as $item)
 											<tr>
 												<th scope="row">{{ $i++ }} </th>
-												<td>{{ $item->name }}</td>
-												<td>{{ $item->phone }}</td>
+												{{-- <td>{{ $item->name }}</td> --}}
+												{{-- <td>{{ $item->phone }}</td>
 												<td>{{ $item->country->name }}</td>
-												
+												 
 											</tr>
-										@endforeach
+										@endforeach  --}}
 									</tbody>
 								</table>
 							</div>

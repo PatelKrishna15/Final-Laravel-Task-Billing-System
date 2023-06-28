@@ -2,7 +2,7 @@
 @section('content')
     <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/datatables.min.css"
         rel="stylesheet" />
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/datatables.min.js">
     </script>
     <div class="container">
@@ -87,7 +87,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-
+                
                 <div class="modal-footer">
 
                     <button type="submit" id="submit" name="submit" class="btn btn-primary">Store</button>
@@ -95,7 +95,11 @@
             </form>
         </div>
     </div>
-
+    
+    {{-- toastr()
+    ->closeOnHover(true)
+    ->closeDuration(10)
+    ->addInfo('Your password has been reset and a new one has been sent to your email.'); --}}
     <div class="container">
         <div class="card mt-2 p-3">
             <div class="row">
@@ -142,6 +146,8 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
     <script>
         $(document).ready(function() {
             $("#company_name").on('change', function() {
@@ -162,4 +168,5 @@
             });
         });
     </script>
+    
 @endsection
